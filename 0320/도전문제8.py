@@ -1,0 +1,15 @@
+a=int(input("삼각형의 한 변을 입력하시오: "))
+b=int(input("삼각형의 다른 변을 입력하시오: "))
+c=int(input("삼각형의 마지막 변을 입력하시오: "))
+A=int(input("삼각형의 내각을 입력하시오: "))
+B=int(input("삼각형의 다른 내각을 입력하시오: "))
+C=int(input("삼각형의 마지막 내각을 입력하시오: "))
+
+if A + B + C == 180:
+    if (a+b)>c and (a+c)>b and (b+c)>a:
+        print("올바른 삼각형")
+    else:
+        print("올바르지 않은 삼각형")
+else:
+    print("내각의 합이 180도가 아닙니다.")
+    

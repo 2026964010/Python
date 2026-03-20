@@ -1,0 +1,55 @@
+Summary
+1.조건문
+2.
+    #조건식이 참일 때 실행
+    # 조건식이 거짓일 때 실행
+
+Exercise
+1.False
+2.(2),(3)
+
+3.
+(a)
+if 60 <= speed <= 100:
+    print("정상 속도")
+(b)
+if x > y:
+    max = x
+    min = y
+else:
+    max = y
+    min = x
+(c)
+if op == 1:
+    print("one")
+elif op == 2:
+    print("two")
+elif op == 3:
+    print("three")
+
+4.
+(a)
+if 10 < x < 20:
+    print(x)
+(b)
+if x < 10 or x > 20:
+    print(x)
+
+5. 20살 이상
+6. = 는 변수 넣는거니까 동등은 ==를 사용해야했다.
+7.
+temp = int(input("온도를 입력하시오: "))
+
+if temp < 0:
+    state = "얼음"
+else:
+    state = "기체"
+
+print(state)
+
+8. 2번이 간결해서 좋다.
+9. 두번째 print 에 들여쓰기를 하지 않았다.
+10.
+if city != "서울" and city != "부산":
+
+11. 조건을 한 번만 검사하는 b 가 더 효율적이다.
