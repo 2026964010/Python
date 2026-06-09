@@ -1,0 +1,209 @@
+1.고양이 클래스로 정의하고 몇 개의 인스턴스를 생성해보자. 접근자와 설정자를 사용해보자.
+class Cat:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name} {self.age}"
+    
+    def setName(self, name):
+        self.name = name
+    
+    def getName(self):
+        return self.name
+
+    def setAge(self, age):
+        self.age = age
+
+    def getAge(self):
+        return self.age
+    
+missy = Cat("Missy", 3)
+lucky = Cat("Lucky", 5)
+print(missy)
+print(lucky)
+
+답: Missy 3
+    Lucky 5
+-----------------------------------------------------------------------------------------------------
+
+2. 로켓을 나타내는 Rocket 클래스를 작성해보자. Rocket 클래스는 다음과 같은 인스턴스 변수와 메소드를 가진다.
+class Rocket:
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f"로켓의 위치: ({self.x}, {self.y})"
+    
+    def moveUp(self):
+        self.y += 1
+
+myRocket = Rocket()
+print("로켓의 높이: ", myRocket.y)
+
+myRocket.moveUp()
+print("로켓의 높이: ", myRocket.y)
+
+답: 로켓의 높이: 0
+    로켓의 높이: 1
+-----------------------------------------------------------------------------------------------------
+3. 상자를 나타내는 Box 클래스를 작성하여 보자. Box 클래스는 가로길이,세로길이,높이를 나타내는 인스턴스 변수를 가진다.
+class Box:
+    def  __init__(self, l, h, d):
+        self.l = l
+        self.h = h
+        self.d = d
+
+    def __str__(self):
+        return f"{self.l}, {self.h}, {self.d}"
+    
+    def setLength(self, l):
+        self.l = l
+        
+    def getLength(self):
+        return self.l
+    
+    def setHeight(self, h):
+        self.h = h
+    
+    def getHeight(self):
+        return self.h
+    
+    def getDepth(self):
+        return self.d
+    
+b1 = Box(100, 100, 100)
+print(b1)
+print("상자의 부피는", b1.getLength() * b1.getHeight() * b1.getDepth())
+
+답: (100, 100, 100)
+    상자의 부피는 1000000
+-----------------------------------------------------------------------------------------------------
+4. 사각형을 나타내는 Rectangle 클래스를 작성하여 보자. Rectangle 클래스는 다음과 같은 인스턴스 변수와 메소드를 가진다.
+class Rectangle:
+    def __init__(self, x, y, w, h):
+        self.x = x
+        self.y = y
+        self.width = w
+        self.height = h
+
+    def __str__(self):
+        return f"{self.x}, {self.y}, {self.width}, {self.height}"
+
+    def getArea(self):
+        return self.width * self.height
+
+    def overlap(self, r):
+        if (self.x + self.width > r.x and self.x < r.x + r.width and
+            self.y + self.height > r.y and self.y < r.y + r.height):
+            return True
+        return False
+    
+r1 = Rectangle(0, 0, 100, 100)
+r2 = Rectangle(10, 10, 100, 100)
+if r1.overlap(r2):
+    print("r1과 r2는 서로 겹칩니다.")
+else:
+    print("r1과 r2는 서로 겹치지 않습니다.")
+
+답: r1과 r2는 서로 겹칩니다. 
+-----------------------------------------------------------------------------------------------------
+5. 삼각형을 나태는 클래스 Triangle을 작성해보자 Triangle 클래스는 다음과 같은 인스턴스 변수와 메소드를 가진다. 
+class Triangle:
+    numberOfSides = 3
+
+    def __init__(self, a1, b1, c1):
+        self.angle1 = a1
+        self.angle2 = b1
+        self.angle3 = c1
+
+    def checkAngles(self):
+        if self.angle1 + self.angle2 + self.angle3 == 180:
+            return True
+        else:
+            return False
+        
+Triangle = Triangle(90, 30, 60)
+print(Triangle.checkAngles())
+
+답: triangle=Triangle(90,30,60)
+    print(triangle.checkAngles())
+
+-----------------------------------------------------------------------------------------------------
+6. Person이라는 클래스를 작성해보자. Person 클래스는 다음과 같은 인스턴스 변수와 메소드를 가진다.
+class Person:
+    def __init__ (self, name, mobile="", office="", email=""):
+        self.name = name
+        self.mobile = mobile
+        self.office = office
+        self.email = email
+
+    def __str__(self):
+        return f"{self.name}, {self.mobile}, {self.office}, {self.email}"
+    
+    def setEmail(self, email):
+        self.email = email
+
+p1 = Person("Kim", office="1234567", email="kim@company.com")
+p2 = Person("Park", office="12345678")
+p2.setEmail("park@company.com")
+print(p1)
+print(p2)
+
+답: p1 = Person("Kim", office="1234567", email="kim@company.com")
+    p2 = Person("Park", office="2345678")
+    p2.setEmail("park@company.com")
+-----------------------------------------------------------------------------------------------------
+7. 사람들의 연락처를 저장하는 PhoneBook 클래스를 작성해보자. PhoneBook 클래스는 딕셔너리를 이용하여서 연락처를 저장한다. 
+class PhoneBook:
+    def __init__(self):
+        self.contacts = {}
+        
+    def add(self, name, mobile="", office="", email=""):
+        self.contacts[name] = {"mobile": mobile, "office": office, "email": email}
+        
+    def __str__(self):
+        result = ""
+        for name, info in self.contacts.items():
+            result += f"{name}\n"
+            if info['office']: 
+                result += f"office phone:   {info['office']}\n"
+            if info['email']: 
+                result += f"email address:  {info['email']}\n"
+            result += "\n"
+        return result.strip()
+
+obj = PhoneBook()
+obj.add("Kim", office="1234567", email="kim@company.com")
+obj.add("Park", office="2345678", email="park@company.com")
+print(obj)
+
+답: Kim
+    office phone:	1234567
+    email address:	kim@company.com
+    
+    Park
+    office phone:	2345678
+    email address:	park@company.com
+-----------------------------------------------------------------------------------------------------
+8. printSong이라는 클래스를 작성해보자.printSong의 생성자는 노래의 가사를 리스트 형태로 받아서 객체의 내부에 저장한다. sing() 메소드는 한 줄에 한 항목씩 출력한다.
+class Song:
+    def __init__(self, lyrics_list):
+        self.lyrics = lyrics_list
+        
+    def sing(self):
+        for line in self.lyrics:
+            print(line)
+
+aSong = Song(["TWINKLE, twinkle, little star",
+              "How I wonder what you are!",
+              "Up above the world so high,",
+              "Like a diamond in the sky."])
+aSong.sing()
+
+답: TWINKLE, twinkle, little star,
+    How I wonder what you are!
+    Up above the world so high,
+    Like a diamond in the sky.
