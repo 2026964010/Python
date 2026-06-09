@@ -1,0 +1,162 @@
+1-2: 순서가 있는 묶음은 여러 값이 차례대로 줄을 서 있는 형태입니다. 이때 각 값의 자리에 붙여진 번호를 인덱스라고 부릅니다.
+
+2-1: 리스트는 나중에 내용을 바꿀 수 있지만, 튜플은 한 번 만들면 내용을 절대 바꿀 수 없다는 점이 다릅니다.
+
+2-2: 튜플을 만들 때는 tuple()이라는 도구를 사용합니다.
+
+2-3: 패킹은 여러 값을 하나로 크게 묶는 것이고, 언패킹은 묶여 있는 꾸러미를 풀어서 각각의 변수에 나누어 담는 것입니다.
+
+2-4: 반복되는 묶음을 가져와서 각 값에 번호를 매긴 뒤, '번호와 값'을 한 쌍으로 묶어서 돌려줍니다.
+
+3-1: 리스트는 순서가 있고 똑같은 값을 여러 번 넣을 수 있지만, 세트는 순서가 따로 없고 똑같은 값을 하나만 가질 수 있습니다.
+
+3-2: 세트는 순서대로 줄을 서 있지 않기 때문에, 번호(인덱스)로 특정 값을 뽑아낼 수 없습니다.
+
+3-3: 두 묶음에 공통으로 들어있는 값을 찾을 때는 & 기호를 사용합니다.
+
+3-4: 값을 하나 넣을 때는 add(), 여러 값을 한꺼번에 넣을 때는 update()를 사용합니다.
+
+4-1: 비어 있는 사전을 만들 때는 {}  처럼 중괄호만 써서 만듭니다.
+
+4-2: 사전에 들어있는 이름표(키)들을 하나씩 꺼내어 출력하는 방법입니다.
+
+Python
+my_dict = {'이름': '홍길동', '나이': 20, '학점': 'A'}
+for key in my_dict:
+    print(key)
+4-3: 사전에 새로운 정보를 넣을 때는 사전[이름표] = 값 형태로 적어줍니다.
+
+5-1: 글자가 가진 고유의 숫자 값을 알고 싶을 때는 ord()를 사용합니다.
+
+5-2: 글자의 맨 마지막 부분을 가져오고 싶을 때는 뒤에서부터 세는 번호인 -1을 쓰는 것이 가장 편합니다.
+
+5-3: 글자끼리 서로 같은지, 혹은 가나다 순서에서 누가 더 앞서는지 비교할 때는 비교 기호들을 사용합니다.
+
+6-1: 글자 양 끝의 공백만 지울 때는 strip()을 쓰고, 글자 사이사이의 모든 공백을 없애고 싶을 때는 replace()를 써서 공백을 빈 칸으로 바꿔줍니다.
+
+6-2: 여러 조각으로 나뉜 글자들을 하나로 합칠 때는 join()을 사용합니다.
+
+6-3: 긴 글을 특정 기준에 따라 여러 조각으로 쪼갤 때는 split()을 사용합니다.도전문제
+1-1(324p): s1 = input("첫 번째 문자열: ") s2 = input("두 번째 문자열: ")
+
+common = set(s1) & set(s2) total = set(s1) | set(s2)
+
+print("\n공통된 문자:", *common)
+
+ratio = len(common) / len(total) if total else 0 print("결과: 표절 의심" if ratio >= 0.7 else "결과: 정상")
+
+2-1(325p): txt = input("작문 리포트 입력: ") words = txt.split()
+
+total = len(words) unique = len(set(words))
+
+ratio = (unique / total) if total else 0
+
+print(f"\n전체 단어: {total}개 | 고유 단어: {unique}개 | 비율: {ratio * 100:.1f}%")
+
+print("결과: 학점 A" if ratio > 0.5 else "결과: 학점 B 이하")
+
+3-1(332p): korean_dict = {}
+
+korean_dict["하나"]="one" korean_dict["둘"]="two" korean_dict["셋"]="three"
+
+word = input("단어를 입력하세요: ") print(korean_dict[word])
+
+3-2(332p): english_dict = {"one": "하나", "two": "둘", "three": "셋"}
+
+while True: print("\n[ 영어 사전 메뉴 ]") print("1. 단어 추가") print("2. 단어 검색") print("3. 종료")
+
+choice = input("메뉴 번호를 입력하세요: ")
+
+if choice == '1':
+    eng = input("추가할 영어 단어: ")
+    kor = input("한국어 뜻: ")
+    english_dict[eng] = kor
+    print(f"'{eng}' 단어가 추가되었습니다!")
+    
+elif choice == '2':
+    word = input("검색할 단어를 입력하세요: ")
+    result = english_dict.get(word, "사전에 등록되지 않은 단어입니다.")
+    print(f"결과: {result}")
+    
+elif choice == '3':
+    print("프로그램을 종료합니다.")
+    break
+    
+else:
+    print("잘못된 입력입니다. 1, 2, 3 중에서 선택해주세요.")
+4-1(334p): def main(): address_book = {} while True: user = display_menu() if user ==1: name, number = get_contact() address_book[name] = number elif user == 2: name, number = get_contact() address_book.pop(name) elif user == 3: name = input("검색할 이름: ") number = address_book.get(name) if number: print(f"{name}의 전화번호: {number}") else: print("등록되지 않은 연락처입니다.") elif user == 4: for key in sorted(address_book): print(key,"의 전화번호:", address_book[key]) else: break
+
+def get_contact(): name = input("이름: ") number = input("전화번호: ") return name, number
+
+def display_menu(): print("1. 연락처 추가") print("2. 연락처 삭제") print("3. 연락처 검색") print("4. 연락처 출력") print("5. 종료") select = int(input("메뉴 항목을 선택하시오: ")) return select
+
+main()
+
+5-1(335p): score_dic = {}
+
+print("학생 성적 입력 프로그램입니다. (종료하려면 이름에 '종료'를 입력하세요)")
+
+while True: name = input("\n학생 이름: ")
+
+if name == '종료':
+    break
+    
+score_input = input(f"{name}의 성적을 띄어쓰기로 구분하여 입력 (예: 99 83 95): ")
+scores = [int(x) for x in score_input.split()]
+score_dic[name] = scores
+print(f"[{name}] 학생의 성적이 저장되었습니다.")
+print("\n--- 전체 학생 평균 성적 ---") for name, scores in score_dic.items(): if len(scores) > 0: avg = sum(scores) / len(scores) print(f"{name}의 평균 성적 = {avg:.1f}")
+
+6-1(343p): [너무 어려워 AI의 힘을 빌림] s = input("문자열을 입력하시오: ")
+
+left = 0 right = len(s) - 1
+
+is_palindrome = True
+
+while left < right: if s[left] != s[right]: is_palindrome = False break left += 1 right -= 1
+
+if is_palindrome: print("회문입니다.") else: print("회문이 아닙니다.")
+
+7-1(349p): s = input("문자열을 입력하시오: ")
+
+exclude_words = {"by", "in", "the", "of"} words = s.split()
+
+filtered_words = [word for word in words if word not in exclude_words] filtered_s = "".join(filtered_words) filtered_s_reverse = filtered_s[::-1]
+
+if filtered_s == filtered_s_reverse: print(f"변환된 문자열 '{filtered_s}': 회문입니다.") else: print(f"변환된 문자열 '{filtered_s}': 회문이 아닙니다.")
+
+8-1(350p): address=input("이메일 주소를 입력하시오: ") (id, domain)=address.split(".")
+
+print(address) print("아이디=" + id) print("도메인=" + domain)
+
+9-1(351p): message = input("트위터 메시지를 입력하세요: ")
+
+upper_count = 0
+
+for char in message: if char.isupper(): upper_count += 1
+
+print(f"\n총 글자 수: {len(message)}") print(f"대문자 개수: {upper_count}")
+
+10-1(352p): message = input("트위터 메시지를 입력하세요: ")
+
+word_count = message.count(forbidden) clean_message = message.replace(forbidden, "")
+
+print(f"\n금지된 단어 사용 횟수: {word_count}번") print(f"필터링된 메시지: {clean_message}")
+
+10-2(352p): message = input("트위터 메시지를 입력하세요: ")
+
+words = message.split() hashtags = []
+
+for word in words: if word.startswith("#"): hashtags.append(word)
+
+print(f"\n해시태그 개수: {len(hashtags)}개") print(f"사용된 해시태그: {hashtags}")
+
+10-3(352p): import string
+
+message = input("문자열을 입력하세요: ")
+
+lower_message = message.lower() clean_chars = [char for char in lower_message if char not in string.punctuation]
+
+clean_message = "".join(clean_chars)
+
+print(f"\n원본 문자열: {message}") print(f"정제된 문자열: {clean_message}")
